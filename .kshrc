@@ -44,11 +44,32 @@ function up {
     fi;
 };
 
-. "$HOME/".profile.d/ext.sh;
-. "$HOME/".profile.d/base.sh;
-. "$HOME/".profile.d/run.sh;
+. "$HOME/.profile.d/ext.sh";
+. "$HOME/.profile.d/base.sh";
+. "$HOME/.profile.d/run.sh";
 
 \ProfileRcBaseAlias;
+
+[[ $- == *l* ]] && {
+	alias 'autoload=typeset -fu'
+	alias 'bool=_Bool'
+	alias 'command=command  '
+	alias 'compound=typeset -C'
+	alias 'fc=hist'
+	alias 'float=typeset -lE'
+	alias 'functions=typeset -f'
+	alias 'hash=alias -t --'
+	alias 'history=hist -l'
+	alias 'integer=typeset -li'
+	alias 'nameref=typeset -n'
+	alias 'nohup=nohup  '
+	alias 'r=hist -s'
+	alias 'redirect=command exec'
+	alias 'source=command .'
+	alias 'stop=kill -s STOP'
+	alias 'suspend=kill -s STOP "$$"'
+	alias 'type=whence -v'
+}
 
 \ProfileRcRunGpg 1>/dev/null;
 \ProfileRcRunKeychainInteractiv;
