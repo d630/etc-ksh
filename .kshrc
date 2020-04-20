@@ -3,26 +3,20 @@
 # Sourced via ENV
 
 [[ $- == *i* ]] ||
-    return 1;
+	return 1;
 
 ((SHLVL++));
 
 if
-    (($(id -u)));
+	(($(id -u)));
 then
-    PS1='% ';
+	PS1='% ';
 else
-    PS1='# ';
+	PS1='# ';
 fi;
 
 PS2='> ';
 
-HOSTNAME=$(hostname -s 2>/dev/null);
-[[ "$HOSTNAME" == *([	 ]|localhost) ]] &&
-    HOSTNAME=$(hostname 2>/dev/null);
-export HOSTNAME;
-
-export SHELL=$(whence -p ksh);
 export HISTFILE=${XDG_VAR_HOME}/spool/ksh_history;
 export HISTSIZE=10000;
 
@@ -32,16 +26,16 @@ tabs -4;
 set -o emacs;
 
 function up {
-    if
-        [[ -z ${1//[0-9]/} ]];
-    then
-        typeset s=$(printf '%*s' ${1:-1} '');
-        command cd -- ${s// /../} &&
-            print "cd -- $PWD";
-    else
-        print "Usage: up [<INT>]" 1>&2;
-        return 1;
-    fi;
+	if
+		[[ -z ${1//[0-9]/} ]];
+	then
+		typeset s=$(printf '%*s' ${1:-1} '');
+		command cd -- ${s// /../} &&
+			print "cd -- $PWD";
+	else
+		print "Usage: up [<INT>]" 1>&2;
+		return 1;
+	fi;
 };
 
 . "$HOME/.profile.d/ext.sh";
